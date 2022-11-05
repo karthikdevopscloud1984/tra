@@ -29,7 +29,7 @@ pipeline {
             steps {
                 sh '''
                  cd jenkins/build
-                 sudo docker compose up -d
+                 sudo docker-compose up -d
                  
                 '''
             }
