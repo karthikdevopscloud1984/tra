@@ -8,7 +8,12 @@ pipeline {
             steps {
                 sh '''
                 
-                ./jenkins/build/build.sh
+                  cp -r static templates tests jenkins/build/
+                  cp .env hello.py requirements.txt jenkins/build/
+                  echo "****************************"
+                  echo "** Building Docker Image ***"
+                  echo "****************************"
+                  cd jenkins/build/ && sudo docker build --rm -t app:${env.BUILD_TAG} .
                 
                 '''
             }
