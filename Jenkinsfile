@@ -13,7 +13,7 @@ pipeline {
                   echo "****************************"
                   echo "** Building Docker Image ***"
                   echo "****************************"
-                  cd jenkins/build/ && sudo docker build --rm -t app:${env.BUILD_TAG} .
+                  cd jenkins/build/ && sudo docker build -t app:$BUILD_NUMBER .
                 
                 '''
             }
