@@ -25,14 +25,13 @@ pipeline {
                '''
         }
         }
-        stage('Push') {
-            steps {
-                sh 'echo "This is Push stage"'
-            }
-        }
         stage('Deploy') {
             steps {
-                sh 'echo "This is deploy stage"'
+                sh '''
+                 cd jenkins/build
+                 sudo docker compose up -d
+                 
+                '''
             }
         }
     }
