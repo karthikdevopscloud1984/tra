@@ -29,6 +29,7 @@ pipeline {
             steps {
                 sh '''
                  cd jenkins/build
+                 export $BUILD_NUMBER
                  sudo docker-compose up -d
                  
                 '''
