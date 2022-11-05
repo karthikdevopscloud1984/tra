@@ -18,10 +18,11 @@ pipeline {
                 '''
             }
         }
-        stage('Test') {
-            steps {
-                sh 'echo "This is Test stage"'
-            }
+        stage('Unit Test') {
+           def imageTest= docker.build("app:$BUILD_NUMBER-test", "-f jenkins/build/Dockerfile .")
+           imageTest.inside{
+            sh 'python tests/test.py' 
+          } 
         }
         stage('Push') {
             steps {
