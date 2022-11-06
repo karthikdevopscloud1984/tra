@@ -32,15 +32,12 @@ pipeline {
                '''
         }
         }
-//         stage('Deploy') {
-//             steps {
-//                 sh '''
-//                  cd jenkins/build
-//                  export $BUILD_NUMBER
-//                  sudo docker-compose up -d
-                 
-//                 '''
-//             }
-//         }
+        stage('Deploy in Development') {
+            steps {
+                sh '''
+                 cd jenkins/build && sudo sed -E -i'' "s/(.*python:).*/\1$BUILD_NUMBER/" 'docker-compose.yml' && sudo docker-compose up -d   
+                '''
+            }
+        }
     }
 }
