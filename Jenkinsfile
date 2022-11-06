@@ -17,7 +17,7 @@ pipeline {
                 '''
             }
         }
-        stage('Test') {
+        stage('Testing') {
            steps {
                sh '''
                  cd jenkins/build/ && docker exec -t build_app-test_1 python tests/test.py
