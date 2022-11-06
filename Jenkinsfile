@@ -10,9 +10,9 @@ pipeline {
                 
                   cp -r static templates tests jenkins/build/
                   cp .env hello.py requirements.txt jenkins/build/
-                  echo "****************************"
-                  echo "** Building Docker Image ***"
-                  echo "****************************"
+                  echo "****************************************&&"
+                  echo "** Building and running docker for testing ***"
+                  echo "****************************************&&"
                   cd jenkins/build/ && docker-compose build && docker-compose -f docker-compose-test.yml up -d 
                 '''
             }
