@@ -20,7 +20,7 @@ pipeline {
         stage('Test') {
            steps {
                sh '''
-                 cd jenkins/build/ && docker-compose exec -T app-test python tests/test.py
+                 cd jenkins/build/ && docker exec -t build_app-test_1 python tests/test.py
                  if [ $? -eq 0 ]; then
                     cd jenkins/build/ && docker-compose -f docker-compose-test.yml down
                  else
