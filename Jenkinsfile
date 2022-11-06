@@ -28,7 +28,7 @@ pipeline {
         stage('Remove Test container') {
            steps {
                sh '''
-                  docker-compose down
+                  cd jenkins/build/ && docker-compose down
                '''
         }
         }
