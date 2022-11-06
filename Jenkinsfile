@@ -13,27 +13,27 @@ pipeline {
                   echo "****************************"
                   echo "** Building Docker Image ***"
                   echo "****************************"
-                  cd jenkins/build/ && sudo docker build -t app:$BUILD_NUMBER .
+                  cd jenkins/build/ && docker-compose build --no-cache
                 
                 '''
             }
         }
-        stage('Unit Test') {
-           steps {
-               sh '''
-                  docker run --tty app:$BUILD_NUMBER python tests/test.py
-               '''
-        }
-        }
-        stage('Deploy') {
-            steps {
-                sh '''
-                 cd jenkins/build
-                 export $BUILD_NUMBER
-                 sudo docker-compose up -d
+//         stage('Unit Test') {
+//            steps {
+//                sh '''
+//                   docker run --tty app:$BUILD_NUMBER python tests/test.py
+//                '''
+//         }
+//         }
+//         stage('Deploy') {
+//             steps {
+//                 sh '''
+//                  cd jenkins/build
+//                  export $BUILD_NUMBER
+//                  sudo docker-compose up -d
                  
-                '''
-            }
-        }
+//                 '''
+//             }
+//         }
     }
 }
