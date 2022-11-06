@@ -4,7 +4,7 @@ pipeline {
 
     stages {
 
-        stage('Build') {
+        stage('Build and test image') {
             steps {
                 sh '''
                 
@@ -13,18 +13,26 @@ pipeline {
                   echo "****************************"
                   echo "** Building Docker Image ***"
                   echo "****************************"
-                  cd jenkins/build/ && docker-compose build --no-cache
-                
+                  cd jenkins/build/ 
+                  docker-compose up -d
                 '''
             }
         }
-//         stage('Unit Test') {
-//            steps {
-//                sh '''
-//                   docker run --tty app:$BUILD_NUMBER python tests/test.py
-//                '''
-//         }
-//         }
+        stage('Test') {
+           steps {
+               sh '''
+                  docker-compose exec -T app python tests/test.py
+               '''
+        }
+        }
+        
+        stage('Remove Test container') {
+           steps {
+               sh '''
+                  docker-compose down
+               '''
+        }
+        }
 //         stage('Deploy') {
 //             steps {
 //                 sh '''
