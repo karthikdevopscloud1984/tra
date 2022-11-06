@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   app:
-    image: "app:BUILD_NUMBER"
+    image: "app:${BUILD_NUMBER}"
     build: .
     network_mode: "host"
     env_file:
