@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   app-test:
-    image: python:36
+    image: python:${BUILD_NUMBER}
     build: .
     network_mode: "host"
     env_file:
