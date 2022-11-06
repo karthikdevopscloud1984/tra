@@ -21,14 +21,11 @@ pipeline {
            steps {
                sh '''
                  cd jenkins/build/ && docker-compose exec -T app python tests/test.py
-               '''
-        }
-        }
-        
-        stage('Remove Test container') {
-           steps {
-               sh '''
-                  cd jenkins/build/ && docker-compose down
+                 if [ $? -eq 0 ]; then
+                    docker-compose down -f jenkins/build/docker-compose.yml
+                 else
+                    docker-compose down -f jenkins/build/docker-compose.yml
+                    exit 1
                '''
         }
         }
