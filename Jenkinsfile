@@ -20,7 +20,7 @@ pipeline {
         stage('Test') {
            steps {
                sh '''
-                  docker-compose exec -T app python tests/test.py
+                  docker-compose exec -T build_app_1 python tests/test.py
                '''
         }
         }
