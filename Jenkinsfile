@@ -22,9 +22,9 @@ pipeline {
                sh '''
                  cd jenkins/build/ && docker exec -t build_app-test_1 python tests/test.py
                  if [ $? -eq 0 ]; then
-                    cd jenkins/build/ && docker-compose -f docker-compose-test.yml down
+                    docker-compose -f docker-compose-test.yml down
                  else
-                    cd jenkins/build/ && docker-compose -f docker-compose-test.yml down
+                    docker-compose -f docker-compose-test.yml down
                     exit 1
                  fi
                '''
