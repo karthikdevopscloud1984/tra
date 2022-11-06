@@ -26,6 +26,7 @@ pipeline {
                  else
                     docker-compose down -f jenkins/build/docker-compose.yml
                     exit 1
+                 fi
                '''
         }
         }
