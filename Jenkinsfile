@@ -21,7 +21,7 @@ pipeline {
         stage('Unit Test') {
            steps {
                sh '''
-                  python tests/test.py
+                  docker run --tty app:$BUILD_NUMBER python tests/test.py
                '''
         }
         }
