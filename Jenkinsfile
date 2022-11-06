@@ -35,7 +35,8 @@ pipeline {
         stage('Deploy in Development') {
             steps {
                 sh '''
-                 cd jenkins/build && sudo sed -E -i'' "s/(.*python:).*/\1$BUILD_NUMBER/" 'docker-compose.yml' && sudo docker-compose up -d   
+                 sudo sed -E -i'' "s/(.*python:).*/\1$BUILD_NUMBER/" jenkins/build/docker-compose.yml 
+                 cd jenkins/build/ && docker-compose up -d  
                 '''
             }
         }
