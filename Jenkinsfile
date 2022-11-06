@@ -13,8 +13,7 @@ pipeline {
                   echo "****************************"
                   echo "** Building Docker Image ***"
                   echo "****************************"
-                  cd jenkins/build/ 
-                  sudo docker-compose up -d
+                  cd jenkins/build/ && docker-compose build && docker-compose up -d 
                 '''
             }
         }
