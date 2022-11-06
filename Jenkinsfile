@@ -4,7 +4,7 @@ pipeline {
 
     stages {
 
-        stage('Build and test image') {
+        stage('Build') {
             steps {
                 sh '''
                 
@@ -22,15 +22,15 @@ pipeline {
                sh '''
                  cd jenkins/build/ && docker-compose exec -T app python tests/test.py
                  if [ $? -eq 0 ]; then
-                    docker-compose down -f jenkins/build/docker-compose.yml
+                    cd jenkins/build/ && docker-compose down
                  else
-                    docker-compose down -f jenkins/build/docker-compose.yml
+                    cd jenkins/build/ && docker-compose down
                     exit 1
                  fi
                '''
         }
         }
-        stage('Deploy in Development') {
+        stage('Deploy') {
             steps {
                 sh '''
                  echo $BUILD_NUMBER >> .env
